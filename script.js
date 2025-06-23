@@ -107,7 +107,7 @@ if (!finalRoundBoard) return;
 // Create single final round question that takes up more space
 const questionDiv = document.createElement("div");
 questionDiv.className = "final-question-large";
-questionDiv.textContent = "Final Jeopardy";
+questionDiv.textContent = "ARE YOU READY??????";
 questionDiv.addEventListener("click", () => showFinalQuestion());
 finalRoundBoard.appendChild(questionDiv);
 }

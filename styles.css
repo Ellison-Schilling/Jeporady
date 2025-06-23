@@ -1,7 +1,7 @@
 body {
   font-family: 'Times New Roman', serif;
   text-align: center;
-  background: linear-gradient(135deg, #1d2087 0%, #2a3196 100%);
+  background: linear-gradient(135deg, #0b0d55 0%, #2a3196 100%);
   color: white;
   margin: 0;
   padding: 20px;
@@ -73,18 +73,19 @@ h1 {
   box-shadow: none;
 }
 
-/* Final Jeopardy - Full Width */
+/* Final Jeopardy - Full Width, More Vertical Space */
 #final-round-board {
   display: block;
-  margin: 40px auto;
+  margin: 20px auto 40px auto;
   max-width: 1200px;
   background: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(26, 32, 135, 0.4) 100%);
-  padding: 30px;
+  padding: 40px 30px 50px 30px;
   border-radius: 15px;
   border: 4px solid #FFCC00;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5),
               inset 0 2px 10px rgba(255, 204, 0, 0.1);
   position: relative;
+  min-height: 300px;
 }
 
 #final-round-board::before {
@@ -105,43 +106,66 @@ h1 {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
 }
 
-#final-round-board .question {
+/* Make final round questions look more like clickable buttons */
+#final-round-board .question,
+#final-round-board .final-question-large {
   width: 100%;
-  padding: 50px 30px;
-  font-size: 2.5em;
+  padding: 80px 40px;
+  font-size: 4.5em;
   font-weight: bold;
   margin: 0;
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   box-sizing: border-box;
-  background: linear-gradient(135deg, #0B0B2F 0%, #1a1a1a 50%, #0B0B2F 100%);
-  border: 3px solid #FFCC00;
-  border-radius: 10px;
-  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
-  box-shadow: inset 0 3px 10px rgba(255, 204, 0, 0.15),
-              0 5px 15px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(135deg, #FFCC00 0%, #FFD700 50%, #FFCC00 100%);
+  color: #1a1a1a;
+  border: 4px solid #B8860B;
+  border-radius: 15px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4),
+              inset 0 3px 8px rgba(255, 255, 255, 0.3);
   position: relative;
   overflow: hidden;
+  transition: all 0.4s ease;
+  cursor: pointer;
+  min-height: 250px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
 }
 
-#final-round-board .question::before {
+#final-round-board .question::before,
+#final-round-board .final-question-large::before {
   content: '';
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 204, 0, 0.1), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
   transition: left 0.8s ease;
 }
 
-#final-round-board .question:hover::before {
+#final-round-board .question:hover::before,
+#final-round-board .final-question-large:hover::before {
   left: 100%;
 }
 
-#final-round-board .question:hover {
-  transform: translateY(-2px);
-  box-shadow: inset 0 3px 10px rgba(255, 204, 0, 0.2),
-              0 8px 20px rgba(0, 0, 0, 0.4);
+#final-round-board .question:hover,
+#final-round-board .final-question-large:hover {
+  transform: translateY(-5px) scale(1.02);
+  background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FFD700 100%);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5),
+              inset 0 3px 8px rgba(255, 255, 255, 0.4);
+  border-color: #DAA520;
+}
+
+#final-round-board .question:active,
+#final-round-board .final-question-large:active {
+  transform: translateY(-3px) scale(1.01);
+  background: linear-gradient(135deg, #FFA500 0%, #FF8C00 50%, #FFA500 100%);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4),
+              inset 0 3px 8px rgba(255, 255, 255, 0.2);
 }
 
 #final-round-btn {
@@ -207,44 +231,73 @@ h1 {
   z-index: 1000;
 }
 
+/* Updated modal content to match standard questions styling */
 .modal-content {
-  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-  padding: 40px;
+  background: linear-gradient(135deg, #0B0B2F 0%, #1a1a1a 50%, #0B0B2F 100%);
+  padding: 50px 40px;
   border-radius: 15px;
-  border: 3px solid #FFCC00;
+  border: 4px solid #FFCC00;
   text-align: center;
-  max-width: 600px;
+  max-width: 700px;
   width: 90%;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8),
+              inset 0 3px 10px rgba(255, 204, 0, 0.1);
+  position: relative;
+  overflow: hidden;
 }
 
-#question-text {
-  font-size: 1.8em;
-  margin-bottom: 30px;
+.modal-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent, rgba(255, 204, 0, 0.05), transparent);
+  pointer-events: none;
+}
+
+#question-text, #final-question-text {
+  font-size: 2em;
+  margin-bottom: 40px;
   color: #FFFFFF;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
   line-height: 1.4;
+  font-weight: bold;
+  position: relative;
+  z-index: 1;
 }
 
 button {
-  margin: 10px;
-  padding: 12px 25px;
-  font-size: 1.1em;
+  margin: 15px;
+  padding: 15px 30px;
+  font-size: 1.2em;
   font-weight: bold;
   cursor: pointer;
   background: linear-gradient(135deg, #FFCC00 0%, #FFD700 100%);
   color: #1a1a1a;
-  border: none;
-  border-radius: 8px;
+  border: 2px solid #B8860B;
+  border-radius: 10px;
   transition: all 0.3s ease;
   text-transform: uppercase;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+  letter-spacing: 1px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3),
+              inset 0 2px 4px rgba(255, 255, 255, 0.2);
+  position: relative;
+  z-index: 1;
 }
 
 button:hover {
   background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4),
+              inset 0 2px 4px rgba(255, 255, 255, 0.3);
+  border-color: #DAA520;
+}
+
+button:active {
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
 }
 
 #team-scores {
